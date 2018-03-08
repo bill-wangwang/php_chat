@@ -19,7 +19,7 @@
 
 </div>
 <ul class="sui-list">
-    <li><input id="message" type="text" class="input-text" style="width: 99%" onkeydown='if(event.keyCode==13){send();}' /></li>
+    <li><input id="message" type="text" class="input-text" style="width: 99%"   /></li>
     <li class="sui-cell-centerlink"><button id="btnSend" type="button">发送</button></li>
 </ul>
 <script src="{:config('static_base_url')}/js/zepto.js"></script>
@@ -58,7 +58,11 @@ $(function(){
                 $("#content").prepend(msg);
         }
     };
-
+    $("#message").keydown(function (event) {
+        if(event.keyCode==13){
+            send();
+        }
+    });
     $("#btnSend").click(function () {
         send();
     });
