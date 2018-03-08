@@ -41,6 +41,8 @@ $(function(){
     ws = new WebSocket("ws://119.29.35.128:8282");
 // 服务端主动推送消息时会触发这里的onmessage
     ws.onmessage = function(e){
+        console.log(e);
+        /*
         // json数据转换成js对象
         var data = eval("("+e.data+")");
         var type = data.type || '';
@@ -60,6 +62,7 @@ $(function(){
                 console.log("收到消息 ------------- end ");
                 // alert(e.data);
         }
+        */
     };
 
 
