@@ -99,6 +99,7 @@ $(function(){
             console.log("sorry, something is error~");
             console.log(e);
         }
+        console.log(data);
         var type = data.type || '';
         var bindUrl = "{:url('Room/bind')}";
         switch(type){
@@ -119,7 +120,7 @@ $(function(){
             // 当mvc框架调用GatewayClient发消息时直接alert出来
             default :
                 //var msg = '<div class="msg"><p><b>' + data.account + '</b> ' + data.date + '</p><p>' + data.message + '</p></div>';
-                var msg = '<div class="speech_item"><img src="' + + data.avatar + + '" class="user_icon"> ' + data.account + ' <br> '+ data.date +'<div style="clear:both;"></div><p class="triangle-isosceles top">' + data.message + '</p> </div>';
+                var msg = '<div class="speech_item"><img src="' + data.avatar + '" class="user_icon"> ' + data.account + ' <br> '+ data.date +'<div style="clear:both;"></div><p class="triangle-isosceles top">' + data.message + '</p> </div>';
                 $("#content").prepend(msg);
         }
     };
