@@ -19,8 +19,8 @@
 
 </div>
 <ul class="sui-list">
-    <li><input id="message" type="text" class="input-text" style="width: 99%"   /></li>
-    <li class="sui-cell-centerlink"><button id="btnSend" type="button">发送</button></li>
+    <li><input id="message" readonly type="text" class="input-text" style="width: 99%"   /></li>
+    <li class="sui-cell-centerlink">按 Enter 回车即可发送消息</li>
 </ul>
 <script src="{:config('static_base_url')}/js/zepto.js"></script>
 <script src="{:config('static_base_url')}/js/simpleui.js"></script>
@@ -47,7 +47,13 @@ $(function(){
             // Events.php中返回的init类型的消息，将client_id发给后台进行uid绑定
             case 'init':
                 // 利用jquery发起ajax请求，将client_id发给后端进行uid绑定
-                $.post(bindUrl, {clientId: data.clientId, roomId:roomId}, function(res){}, 'json');
+                $.post(bindUrl, {clientId: data.clientId, roomId:roomId}, function(res){
+                    if(res.code==0){
+                        $("#message").removeAttr("readOnly");
+                    } else {
+                        alert("绑定用户失败了");
+                    }
+                }, 'json');
                 break;
             case 'close':
                 console.log("[" + clientId + "] 离开了聊天室");
@@ -62,9 +68,6 @@ $(function(){
         if(event.keyCode==13){
             send();
         }
-    });
-    $("#btnSend").click(function () {
-        send();
     });
      var send = function () {
         var message = $.trim($("#message").val());
