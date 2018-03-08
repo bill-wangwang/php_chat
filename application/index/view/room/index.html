@@ -15,11 +15,8 @@
 
 <body>
 <div class="sui-list-title" style="text-align: center">默认房间</div>
-<div id="content" style="border: 1px solid #cccccc;min-height: 800px; overflow: auto;">
-    <div class="msg"><p><b>test</b> 14:38</p><p>sssssssss</p></div>
-    <div class="msg"><p><b>test</b> 14:38</p><p>sssssssss</p></div>
-    <div class="msg"><p><b>test</b> 14:38</p><p>sssssssss</p></div>
-    <div class="msg"><p><b>test</b> 14:38</p><p>sssss默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间默认房间ssss</p></div>
+<div id="content" style="border: 1px solid #cccccc;min-height: 600px; overflow: auto;">
+
 </div>
 <ul class="sui-list">
     <li><input id="message" type="text" class="input-text" style="width: 99%" /></li>
@@ -49,7 +46,7 @@ $(function(){
             // 当mvc框架调用GatewayClient发消息时直接alert出来
             default :
                 var msg = '<div class="msg"><p><b>' + data.userId + '</b>' + data.date + '</p><p>' + data.message + '</p></div>';
-                $("#prepend").prepend(msg);
+                $("#content").prepend(msg);
         }
     };
 
