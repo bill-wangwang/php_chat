@@ -37,7 +37,6 @@
 $(function(){
     var uid = 0;
     var clientId = '';
-
     ws = new WebSocket("ws://127.0.0.1:7272");
 // 服务端主动推送消息时会触发这里的onmessage
     ws.onmessage = function(e){
@@ -66,7 +65,7 @@ $(function(){
      var send = function () {
         var message = $.trim($("#message").val());
         if(message.length<=0   ){
-            $.alert("廖天内容不能为空");
+            $.alert("聊天内容不能为空");
             return ;
         }
         $.post("{:url('Chat/talk')}", {message: message, uid:uid,clientId:clientId}, function (res) {
