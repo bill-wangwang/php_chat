@@ -10,13 +10,71 @@
     <link href="{:config('static_base_url')}/style/simpleui.css?v=1" rel="stylesheet" type="text/css">
     <style>
         .msg{margin:2px;border-bottom: 1px dotted #000000;}
+        .triangle-isosceles {
+            position:relative;
+            padding:10px;
+            margin:10px 0 15px;
+            color:#000;
+            background:#D3FF93; /* default background for browsers without gradient support */
+            background:-webkit-gradient(linear, 0 0, 0 100%, from(#EFFFD7), to(#D3FF93));
+            background:-moz-linear-gradient(#EFFFD7, #D3FF93);
+            background:-o-linear-gradient(#EFFFD7, #D3FF93);
+            background:linear-gradient(#EFFFD7, #D3FF93);
+            -webkit-border-radius:10px;
+            -moz-border-radius:10px;
+            border-radius:10px;
+            -moz-box-shadow:1px 1px 2px hsla(0, 0%, 0%, 0.3);
+            -webkit-box-shadow:1px 1px 2px hsla(0, 0%, 0%, 0.3);
+            box-shadow:1px 1px 2px hsla(0, 0%, 0%, 0.3);
+        }
+        .triangle-isosceles:hover{
+            top:-2px;
+            left:-2px;
+            -moz-box-shadow:3px 3px 2px hsla(0, 0%, 0%, 0.3);
+            -webkit-box-shadow:3px 3px 2px hsla(0, 0%, 0%, 0.3);
+            box-shadow:3px 3px 2x hsla(0, 0%, 0%, 0.3);
+        }
+        .triangle-isosceles.top {
+            background:-webkit-gradient(linear, 0 0, 0 100%, from(#D3FF93), to(#EFFFD7));
+            background:-moz-linear-gradient(#D3FF93, #EFFFD7);
+            background:-o-linear-gradient(#D3FF93, #EFFFD7);
+            background:linear-gradient(#D3FF93, #EFFFD7);
+        }
+        .triangle-isosceles:after {
+            content:"";
+            position:absolute;
+            bottom:-9px;
+            left:15px;
+            border-width:9px 21px 0;
+            border-style:solid;
+            border-color:#D3FF93 transparent;
+            display:block;
+            width:0;
+        }
+        .triangle-isosceles.top:after {
+            top:-9px;
+            left:15px;
+            bottom:auto;
+            border-width:0 9px 9px;
+            border-color:#D3FF93 transparent;
+        }
+        .user_icon {
+            float:left;border:1px solid #DDDDDD;padding:2px;margin:0 5px 0 5px;
+        }
+        .cp {
+            color:#888888;
+            text-align:center;
+            font-size:11px;
+        }
+        .thumbnail {
+            border:1px solid #CCCCCC;
+        }
     </style>
 </head>
 
 <body>
 <div class="sui-list-title" style="text-align: center">默认房间</div>
-<div id="content" style="border: 1px solid #cccccc;min-height: 600px; overflow: auto;">
-
+<div id="content" style="min-height:600px; background:#EEEEEE; max-height: 80vh; overflow: scroll;">
 </div>
 <ul class="sui-list">
     <li><input id="message" readonly type="text" class="input-text" style="width: 99%"   /></li>
@@ -60,7 +118,8 @@ $(function(){
                 break;
             // 当mvc框架调用GatewayClient发消息时直接alert出来
             default :
-                var msg = '<div class="msg"><p><b>' + data.account + '</b> ' + data.date + '</p><p>' + data.message + '</p></div>';
+                //var msg = '<div class="msg"><p><b>' + data.account + '</b> ' + data.date + '</p><p>' + data.message + '</p></div>';
+                var msg = '<div class="speech_item"><img src="' + + data.avatar + + '" class="user_icon"> ' + data.account + ' <br> '+ data.date +'<div style="clear:both;"></div><p class="triangle-isosceles top">' + data.message + '</p> </div>';
                 $("#content").prepend(msg);
         }
     };

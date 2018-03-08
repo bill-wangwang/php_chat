@@ -32,6 +32,7 @@ class RoomController extends CommonController {
         $data = json_encode([
             'message'=>$message,
             'userId'=>$userId,
+            'avatar'=> '/static/avatar/' . (($userId %70)+1) . '.jpg',
             'account'=>$user['account'],
             'date'=>date('H:i:s')
         ]);
