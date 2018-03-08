@@ -31,8 +31,10 @@ class RoomController extends CommonController {
         $message = input('post.message', '', 'trim');
         $data = json_encode([
             'message'=>$message,
-            'userId'=>$userId
+            'userId'=>$userId,
+            'date'=>date('H:i:s')
         ]);
         Gateway::sendToGroup($roomId, $data);
+        $this->responseSuccess();
     }
 }

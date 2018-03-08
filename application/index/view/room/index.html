@@ -25,12 +25,6 @@
     <li><input id="message" type="text" class="input-text" style="width: 99%" /></li>
     <li class="sui-cell-centerlink"><button id="btnSend" type="button">发送</button></li>
 </ul>
-
-<ul class="sui-list sui-list-cover sui-border-tb">
-    <!--<li  class="sui-cell-centerlink"><a href="{:url('Public/reg')}">没有账号，点我注册</a></li>-->
-</ul>
-
-
 <script src="{:config('static_base_url')}/js/zepto.js"></script>
 <script src="{:config('static_base_url')}/js/simpleui.js"></script>
 <script>
@@ -39,50 +33,43 @@ $(function(){
     var clientId = '';
     var roomId = {$roomId};
     ws = new WebSocket("ws://119.29.35.128:8282");
-// 服务端主动推送消息时会触发这里的onmessage
+    // 服务端主动推送消息时会触发这里的onmessage
     ws.onmessage = function(e){
-        console.log(e);
         // json数据转换成js对象
         var data = eval("("+e.data+")");
         var type = data.type || '';
         var bindUrl = "{:url('Room/bind')}";
-        var sendMessageUrl = "{:url('Room/talk')}";
+
         switch(type){
             // Events.php中返回的init类型的消息，将client_id发给后台进行uid绑定
             case 'init':
                 // 利用jquery发起ajax请求，将client_id发给后端进行uid绑定
-                $.post(bindUrl, {clientId: data.clientId, roomId:roomId}, function(res){console.log("绑定结果如下");console.log(res)}, 'json');
+                $.post(bindUrl, {clientId: data.clientId, roomId:roomId}, function(res){}, 'json');
                 break;
             // 当mvc框架调用GatewayClient发消息时直接alert出来
             default :
-                console.log("收到消息 start ");
-                console.log(data)
-                console.log(e)
-                console.log("收到消息 ------------- end ");
-                // alert(e.data);
+                var msg = '<div class="msg"><p><b>' + res.userId + '</b>' + res.date + '</p><p>' + res.message + '</p></div>';
+                $("#prepend").prepend(msg);
         }
     };
-
-
 
     $("#btnSend").click(function () {
         send();
     });
-
      var send = function () {
         var message = $.trim($("#message").val());
+         var sendMessageUrl = "{:url('Room/talk')}";
         if(message.length<=0   ){
             $.alert("聊天内容不能为空");
             return ;
         }
-        $.post("{:url('Room/talk')}", {message: message, roomId:roomId }, function (res) {
+        $.post(sendMessageUrl, {message: message, roomId:roomId }, function (res) {
             if(res.code==0){
             }  else {
                 $.alert(res.message || "发送消息失败");
             }
         },'json');
     };
-
 });
 </script>
 </body>
