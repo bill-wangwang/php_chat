@@ -63,7 +63,7 @@ $(function(){
         $.post(sendMessageUrl, {message: message, roomId:roomId }, function (res) {
             if(res.code==0){
                 console.log("消息[ " + message + " ] 发送成功。");
-                $("#message").empty()
+                $("#message").val("")
             }  else {
                 $.alert(res.message || "发送消息失败");
             }
