@@ -18,9 +18,8 @@ if(!extension_loaded('posix'))
 define('GLOBAL_START', 1);
 // 注意这里的路径
 require_once '../vendor/autoload.php';
-
 // 加载所有Applications/*/start.php，以便启动所有服务
-foreach(glob(__DIR__.'/Applications/*/start*.php') as $start_file)
+foreach(glob(__DIR__. '/../Applications/*/start*.php') as $start_file)
 {
     require_once $start_file;
 }
