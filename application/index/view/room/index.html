@@ -45,7 +45,7 @@ $(function(){
                 break;
             // 当mvc框架调用GatewayClient发消息时直接alert出来
             default :
-                var msg = '<div class="msg"><p><b>' + data.userId + '</b>' + data.date + '</p><p>' + data.message + '</p></div>';
+                var msg = '<div class="msg"><p><b>' + data.userId + '</b> ' + data.date + '</p><p>' + data.message + '</p></div>';
                 $("#content").prepend(msg);
         }
     };
@@ -63,6 +63,7 @@ $(function(){
         $.post(sendMessageUrl, {message: message, roomId:roomId }, function (res) {
             if(res.code==0){
                 console.log("消息[ " + message + " ] 发送成功。");
+                $("#message").empty()
             }  else {
                 $.alert(res.message || "发送消息失败");
             }
