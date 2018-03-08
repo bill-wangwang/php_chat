@@ -38,7 +38,7 @@ $(function(){
     var userId = {$user['id']};
     var clientId = '';
     var roomId = {$roomId};
-    ws = new WebSocket("ws://119.29.35.128:7272");
+    ws = new WebSocket("ws://119.29.35.128:8282");
 // 服务端主动推送消息时会触发这里的onmessage
     ws.onmessage = function(e){
         // json数据转换成js对象
