@@ -118,6 +118,9 @@ $(function(){
             case 'close':
                 console.log("[" + clientId + "] 离开了聊天室");
                 break;
+            case 'ping':
+                console.log("执行心跳检测");
+                break;
             // 当mvc框架调用GatewayClient发消息时直接alert出来
             default :
                 //var msg = '<div class="msg"><p><b>' + data.account + '</b> ' + data.date + '</p><p>' + data.message + '</p></div>';
