@@ -53,10 +53,10 @@ class RoomController extends CommonController {
             'date'=>date('H:i:s')
         ]);
         Gateway::sendToAll($data);
-        for($i=1;$i<9;$i++){
-            echo "user={$i}在线状态：" . Gateway::isUidOnline($i) . '<Br/>';
-            echo "user={$i}的clientId为：" . Gateway::getClientIdByUid($i) . '<Br/>';
-        }
+//        for($i=1;$i<9;$i++){
+//            echo "user={$i}在线状态：" . Gateway::isUidOnline($i) . '<Br/>';
+//            echo "user={$i}的clientId为：" . Gateway::getClientIdByUid($i) . '<Br/>';
+//        }
         echo "当前用户数(clientId)：" . Gateway::getAllClientCount() . '<BR/>';
         print_r(Gateway::getAllClientSessions());
         print_r(Gateway::getAllClientInfo());
